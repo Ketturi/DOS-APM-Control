@@ -33,7 +33,7 @@ SECTION .text
         global _start
        
 _start:  
-        cli         ; Disable interrupts before making APM calls
+        cli ; Disable interrupts before making APM calls
         ;check  if APM is ok
         mov ax, 5300h 
         xor bx, bx 
@@ -45,15 +45,14 @@ _start:
         xor     bx, bx
         int     15h
 
-        ;turn off the system
+        ;turn off the system, might not work on old APM versions, or AT power supplies.
         mov     ax, 5307h
         mov     bx, 0001h
         mov     cx, 0003h
         int     15h
         jc APM_error
         
-        ; If successful, terminate the program
-        jmp terminate
+        ; If successful, halt cpu. System should be turned of now.
         hlt
 
 APM_error: cmp  ah, 1

@@ -33,7 +33,7 @@ SECTION .text
         global _start
        
 _start:  
-        cli         ; Disable interrupts before making APM calls
+        cli ; Disable interrupts before making APM calls
         ;check  if APM is ok
         mov ax, 5300h 
         xor bx, bx 
@@ -45,7 +45,7 @@ _start:
         xor     bx, bx
         int     15h
 
-        ;turn off the system
+        ;Set system to suspend
         mov     ax, 5307h
         mov     bx, 0001h
         mov     cx, 0002h
