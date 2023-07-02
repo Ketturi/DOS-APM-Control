@@ -31,7 +31,7 @@ msgAPMError86 db "APM not present", "$",0
 
 SECTION .text
         global _start
-	   
+       
 _start:  
         cli         ; Disable interrupts before making APM calls
         ;check  if APM is ok
@@ -50,60 +50,60 @@ _start:
         mov     bx, 0001h
         mov     cx, 0002h
         int     15h
-		jc APM_error
-		
-		; If successful, terminate the program
-		jmp terminate
+        jc APM_error
+        
+        ; If successful, terminate the program
+        jmp terminate
         hlt
 
 APM_error: cmp  ah, 1
-		   mov  dx, msgAPMError01
-		   je printErr
-		   cmp  ah, 2
-		   mov  dx, msgAPMError02
-		   je printErr
-		   cmp  ah, 3
-		   mov  dx, msgAPMError03
-		   je printErr
-		   cmp  ah, 4
-		   mov  dx, msgAPMError04
-		   je printErr
-		   cmp  ah, 5
-		   mov  dx, msgAPMError05
-		   je printErr
-		   cmp  ah, 6
-		   mov  dx, msgAPMError06
-		   je printErr
-		   cmp  ah, 7
-		   mov  dx, msgAPMError07
-		   je printErr
-		   cmp  ah, 8
-		   mov  dx, msgAPMError08
-		   je printErr
-		   cmp  ah, 9
-		   mov  dx, msgAPMError09
-		   je printErr
-		   cmp  ah, 0Ah
-		   mov  dx, msgAPMError0A
-		   je printErr
-		   cmp  ah, 0Bh
-		   mov  dx, msgAPMError0B
-		   je printErr
-		   cmp  ah, 0Ch
-		   mov  dx, msgAPMError0C
-		   je printErr
-		   cmp  ah, 0Dh
-		   mov  dx, msgAPMError0D
-		   je printErr
-		   cmp  ah, 60h
-		   mov  dx, msgAPMError60
-		   je printErr
-		   cmp  ah, 80h
-		   mov  dx, msgAPMError80
-		   je printErr
-		   cmp  ah, 86h
-		   mov  dx, msgAPMError86
-		   je printErr
+           mov  dx, msgAPMError01
+           je printErr
+           cmp  ah, 2
+           mov  dx, msgAPMError02
+           je printErr
+           cmp  ah, 3
+           mov  dx, msgAPMError03
+           je printErr
+           cmp  ah, 4
+           mov  dx, msgAPMError04
+           je printErr
+           cmp  ah, 5
+           mov  dx, msgAPMError05
+           je printErr
+           cmp  ah, 6
+           mov  dx, msgAPMError06
+           je printErr
+           cmp  ah, 7
+           mov  dx, msgAPMError07
+           je printErr
+           cmp  ah, 8
+           mov  dx, msgAPMError08
+           je printErr
+           cmp  ah, 9
+           mov  dx, msgAPMError09
+           je printErr
+           cmp  ah, 0Ah
+           mov  dx, msgAPMError0A
+           je printErr
+           cmp  ah, 0Bh
+           mov  dx, msgAPMError0B
+           je printErr
+           cmp  ah, 0Ch
+           mov  dx, msgAPMError0C
+           je printErr
+           cmp  ah, 0Dh
+           mov  dx, msgAPMError0D
+           je printErr
+           cmp  ah, 60h
+           mov  dx, msgAPMError60
+           je printErr
+           cmp  ah, 80h
+           mov  dx, msgAPMError80
+           je printErr
+           cmp  ah, 86h
+           mov  dx, msgAPMError86
+           je printErr
 
            ; If the error code doesn't match any specific case, display a generic error message
            mov  dx, msgAPMError
@@ -112,11 +112,11 @@ printErr:  mov  ah, 9
 
 exitError: mov  ax, 4CFFh
            int  21h
-		   
+           
 terminate:
            mov  ah, 0
            int 20h 
-		   
+           
 
 TIMES 510-($-$$) DB 0
 DW 0xAA55
